@@ -21,7 +21,7 @@ namespace MKKWebApplication.Controllers
         }
 
         [HttpPost("[controller]/Auth")]
-        public async Task<string> Auth([FromBody] AuthModel model)
+        public async Task<bool> Auth([FromBody] AuthModel model)
         {
             var content = new StringContent(
                 JsonSerializer.Serialize(model),
@@ -31,7 +31,7 @@ namespace MKKWebApplication.Controllers
             var response = await _httpClient.PostAsync("https://localhost:7037/api/User/auth", content);
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            return apiResponse;
+            return response.IsSuccessStatusCode;
         }
     }
 }
