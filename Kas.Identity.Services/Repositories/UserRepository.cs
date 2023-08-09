@@ -35,14 +35,14 @@ namespace Kas.Identity.Services.Repositories
             try
             {
 
-                var role = await _context.Roles.FirstOrDefaultAsync(x => x.Id == model.id);
+                //var role = await _context.Roles.FirstOrDefaultAsync(x => x.Id == model.id);
 
                 var dataUser = new User();
 
                 dataUser.id = Guid.NewGuid().ToString();
                 dataUser.username = model.username;
                 dataUser.password = model.password;
-                dataUser.roleId = role.Id;
+                dataUser.roleId = "1";
 
 
                 this._context.Add(dataUser);
