@@ -155,7 +155,7 @@
             cache: false,
             url: '@Url.Action("ReadSiswaAsync", "Siswa")',
             success: function (Data, textStatus, jqXHR) {
-                $("#tbody-table-user").empty();
+                $("#tbody-table-siswa").empty();
                 var edit = "<a href='javascript:void(0)' class='btn btn-outline-primary' id='EditSiswa'><span class='fa fa-pencil-square-o'></span>&nbsp;Edit</a>"
                 var hapus = "<a href='javascript:void(0)' class='btn btn-outline-primary' id='HapusSiswa'><span class='fa fa-pencil-square-o'></span>&nbsp;Hapus</a>"
 
@@ -173,10 +173,10 @@
                         "<td style='text-align: center;'>" + edit + hapus + "</td>" +
                         '</tr>';
                 });
-                $('#table-user').append(trHTML);
+                $('#table-siswa').append(trHTML);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert("Get User Error.")
+                alert("Get Siswa Error.")
             }
         });
     }

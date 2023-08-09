@@ -129,7 +129,7 @@
         </div>
 
         <div class="my-3 p-3 bg-body rounded shadow-sm">
-            <table class="table" id="table-report-kelas">
+            <table class="table" id="table-report-kas">
                 <thead>
                     <tr>
                         <th class="text-center" scope="col">#</th>
@@ -176,14 +176,13 @@
             kelas: $("#kelas_id").val(),
         }
 
-        console.log(param);
-
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             dataType: 'json',
-            cache: true,
+            contentType: "application/json",
+            cache: false,
             url: '@Url.Action("ReadLaporanKasAsync", "LaporanKas")',
-            data: param,  
+            data: JSON.stringify(param),
             success: function (Data, textStatus, jqXHR) {
                 $("#tbody-table-report-kas").empty();
                 var seq = 0;
@@ -204,6 +203,9 @@
                 $('#table-report-kas').append(trHTML);
             },
             error: function (jqXHR, textStatus, errorThrown) {
+                console.log({
+                    jqXHR, textStatus, errorThrown
+                })
                 alert("Get Report Kas Error.")
             }
         });

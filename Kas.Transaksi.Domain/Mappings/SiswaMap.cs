@@ -26,7 +26,7 @@ namespace Kas.Transaksi.Domain.Mappings
                 .HasColumnType("varchar(36)")
                 .HasMaxLength(150);
 
-            builder.Property(t => t.nama_lengkap)
+            builder.Property(t => t.nisn)
                 .IsRequired()
                 .HasColumnName("NISN")
                 .HasColumnType("varchar(36)")

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MKKWebApplication.Models;
+using Newtonsoft.Json;
+using System;
 using System.Text;
 using System.Text.Json;
 
@@ -24,13 +26,16 @@ namespace MKKWebApplication.Controllers
             return View();
         }
 
-        [HttpGet("[controller]/ReadLaporanKasAsync")]
-        public async Task<IActionResult> ReadLaporanKasAsync([FromBody] ReadPelaporanTransaksiModel model)
+        [HttpPost("[controller]/ReadLaporanKasAsync")]
+        public async Task<IActionResult> ReadLaporanKasAsync([FromBody] ReadPelaporanTransaksiModel data)
         {
             try
             {
-                
-                var requestUrl = $"https://localhost:7249/api/PelaporanTransaksi/readPelaporanTransaksi?startDate={model.startDate}&endDate={model.endDate}&kelas={model.kelas}";
+                var kelas = data.kelas;
+                var startDate = data.startDate?.ToString("yyyy-MM-dd"); 
+                var endDate = data.endDate?.ToString("yyyy-MM-dd");
+
+                var requestUrl = $"https://localhost:7249/api/PelaporanTransaksi/readPelaporanTransaksi?startDate={startDate}&endDate={endDate}&kelasId={kelas}";
                 HttpResponseMessage response = await _httpClient.GetAsync(requestUrl);
 
                 if (response.IsSuccessStatusCode)

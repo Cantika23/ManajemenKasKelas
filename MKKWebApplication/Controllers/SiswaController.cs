@@ -58,7 +58,6 @@ namespace MKKWebApplication.Controllers
             }
             catch (Exception ex)
             {
-                // handle or log exception as necessary
                 throw;
             }
         }
