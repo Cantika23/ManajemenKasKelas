@@ -187,6 +187,8 @@
                 $("#tbody-table-report-kas").empty();
                 var seq = 0;
                 var trHTML = '';
+                var totalPemasukan = 0;
+                var totalPengeluaran = 0;
                 $.each(Data.data, function (i, rowData) {
                     seq += 1;
                     trHTML += '<tr>' +
@@ -194,12 +196,23 @@
                         "<td class='text-center'>" + seq + "</td>" +
                         "<td class='text-center'>" + rowData.tanggal + "</td>" +
                         "<td class='text-center'>" + rowData.kelas + "</td>" +
-                        "<td class='text-center'>" + rowData.jumlahPemasukan + "</td>" +
-                        "<td class='text-center'>" + rowData.jumlahPengeluaran + "</td>" +
+                        "<td class='text-center'>" + rupiah(rowData.jumlahPemasukan) + "</td>" +
+                        "<td class='text-center'>" + rupiah(rowData.jumlahPengeluaran) + "</td>" +
                         "<td class='text-center'>" + rowData.jenisTransaksi + "</td>" +
                         "<td class='text-center'>" + rowData.keterangan + "</td>" +
                         '</tr>';
+
+                    totalPemasukan += rowData.jumlahPemasukan;
+                    totalPengeluaran += rowData.jumlahPengeluaran;
                 });
+                trHTML += `
+                    <tr>
+                        <th colspan="3">Saldo Akhir</th>
+                        <th class='text-center'>${rupiah(totalPemasukan)}</th>
+                            <th class='text-center'>${rupiah(totalPengeluaran)}</th>
+                            <th class='text-center' colspan="2">${rupiah(totalPemasukan - totalPengeluaran)}</th>
+                    </tr>
+                `;
                 $('#table-report-kas').append(trHTML);
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -209,6 +222,13 @@
                 alert("Get Report Kas Error.")
             }
         });
+    }
+
+    const rupiah = (number) => {
+        return new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR"
+        }).format(number);
     }
 
 

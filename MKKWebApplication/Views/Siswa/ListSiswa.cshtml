@@ -136,6 +136,34 @@
     </script>
 </body>
 
+<div id="Modal-Edit-Siswa" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- konten modal-->
+        <div class="modal-content">
+            <!-- heading modal -->
+            <div class="modal-header">
+                <a type="button" class="close" data-dismiss="modal" asp-controller="Kelas" asp-action="ListKelas">&times;</a>
+                <h4 class="modal-title">Edit Siswa</h4>
+            </div>
+            <!-- body modal -->
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <label for="firstName" class="form-label">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="nama_lengkap" placeholder="" value="" required>
+                </div>
+                <div class="col-sm-12">
+                    <label for="firstName" class="form-label">NISN</label>
+                    <input type="text" class="form-control" id="nisn" placeholder="" value="" required>
+                </div>
+            </div>
+            <!-- footer modal -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="submit_edit">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function () {
         $("#Modal-Edit-Siswa").modal('hide');
@@ -158,9 +186,9 @@
                 $("#tbody-table-siswa").empty();
                 var edit = "<a href='javascript:void(0)' class='btn btn-outline-primary' id='EditSiswa'><span class='fa fa-pencil-square-o'></span>&nbsp;Edit</a>"
                 var hapus = "<a href='javascript:void(0)' class='btn btn-outline-primary' id='HapusSiswa'><span class='fa fa-pencil-square-o'></span>&nbsp;Hapus</a>"
-
                 var seq = 0;
                 var trHTML = '';
+                var total = 0;
                 $.each(Data.data, function (i, rowData) {
                     seq += 1;
                     trHTML += '<tr>' +
@@ -173,6 +201,7 @@
                         "<td style='text-align: center;'>" + edit + hapus + "</td>" +
                         '</tr>';
                 });
+
                 $('#table-siswa').append(trHTML);
             },
             error: function (jqXHR, textStatus, errorThrown) {
