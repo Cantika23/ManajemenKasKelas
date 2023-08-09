@@ -73,7 +73,7 @@
 			<input type="text" id="username" class="form_login" placeholder="Username ..">
 
 			<label>Password</label>
-			<input type="text" id="password" class="form_login" placeholder="Password ..">
+			<input type="password" id="password" class="form_login" placeholder="Password ..">
 
 			<input type="submit" class="tombol_login" id="login" value="LOGIN">
 
@@ -108,6 +108,7 @@
 					success: function (Data, textStatus, jqXHR) {
 
 						if (Data.code == '000') {
+							alert(Data.message);
 							window.location.replace('@Url.Action("Index", "Home")');
 						}
 						else {

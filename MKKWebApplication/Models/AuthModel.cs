@@ -2,7 +2,7 @@
 {
     public class AuthModel
     {
-        public string? username { get; set; }
-        public string? password { get; set; }
+        public string username { get; set; } = null!;
+        public string password { get; set; } = null!;
     }
 }

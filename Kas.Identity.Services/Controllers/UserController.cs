@@ -52,7 +52,7 @@ namespace Kas.Identity.Services.Controllers
             }
         }
 
-        [HttpPost("auth")]
+        [HttpGet("auth")]
         public async Task<ActionResult<ResponseBase<bool>>> AuthenticateAsync(string username, string password)
         {
             try

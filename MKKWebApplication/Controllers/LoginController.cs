@@ -21,17 +21,27 @@ namespace MKKWebApplication.Controllers
         }
 
         [HttpPost("[controller]/Auth")]
-        public async Task<bool> Auth([FromBody] AuthModel model)
+        public async Task<IActionResult> Auth([FromBody] AuthModel model)
         {
-            var content = new StringContent(
-                JsonSerializer.Serialize(model),
-                Encoding.UTF8,
-            "application/json");
-
-            var response = await _httpClient.PostAsync("https://localhost:7037/api/User/auth", content);
-            var apiResponse = await response.Content.ReadAsStringAsync();
-
-            return response.IsSuccessStatusCode;
-        }
+			try
+			{
+                var password = model.password;
+                var username = model.username;
+				HttpResponseMessage response = await _httpClient.GetAsync($"https://localhost:7037/api/User/auth?username={username}&password={password}");
+				if (response.IsSuccessStatusCode)
+				{
+					var result = await response.Content.ReadAsStringAsync();
+					return Ok(result);
+				}
+				else
+				{
+					return NotFound(new { message = "Login Failed" });
+				}
+			}
+			catch (Exception ex)
+			{
+				throw;
+			}
+		}
     }
 }
