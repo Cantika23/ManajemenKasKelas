@@ -1,0 +1,243 @@
+﻿
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.115.4">
+    <title>Manajemen Kas Kelas</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta name="theme-color" content="#712cf9">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6.7.11/css/tempus-dominus.css" integrity="sha512-Has32s6AdZCytVnqS3BZc7JZ0PF1WJTNuPQAjGGzwrUa6i7vU9YgAyXm32qtrTP4dihoMaz/2AqPNTW9II5DOA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+
+        .active {
+            color: #0d6efd !important;
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="offcanvas-navbar.css" rel="stylesheet"> -->
+</head>
+
+<body class="bg-body-tertiary">
+
+
+    <main class="container">
+        <div class="report-header bg-body rounded shadow-sm p-3 my-3">
+            <div class="title-section lh-1">
+                <h1 class="h5 mb-5 lh-1">Laporan Kas</h1>
+            </div>
+            <div class="filter-section">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="startDate" class="form-label">Tanggal Mulai</label>
+                        <input type="date" class="form-control" id="startDate" placeholder="" value="" required>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="endDate" class="form-label">Tanggal Akhir</label>
+                        <input type="date" class="form-control" id="endDate" placeholder="" value="" required>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="endDate" class="form-label">Kelas</label>
+                        <select class="form-control" id="kelas_id">
+                            <option>Pilih Kelas</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <button style="margin-top:25px" class="btn btn-primary" id="btnSearch">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <table class="table" id="table-report-kelas">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">#</th>
+                        <th class="text-center" scope="col">Tanggal</th>
+                        <th class="text-center" scope="col">Nama Kelas</th>
+                        <th class="text-center" scope="col">Jumlah Pemasukan</th>
+                        <th class="text-center" scope="col">Jumlah Pengeluaran</th>
+                        <th class="text-center" scope="col">Jenis Transaksi</th>
+                        <th class="text-center" scope="col">Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-table-report-kas">
+                    
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6.7.11/js/jQuery-provider.js" integrity="sha512-mP5pLorniZC06rAMOgwVM4HF+ahvcDgqpzEewFgduyIgSDXBuucxfPpEpygyU370dUZeecahEq83hwbpx29Jzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6.7.11/js/tempus-dominus.js" integrity="sha512-/o4aOKkiRYXNS2+xB9iv3tywEpT8eloh6DWfWWzOIJMQ0EVCNsLSQyJoFXJKB5UOpv0BA7c9lHq3vPkcqeBEaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
+    </script>
+</body>
+
+<script>
+
+    $(document).ready(function () {
+        $('#btnSearch').click(function () {
+            GetReportKas();
+        })
+
+        GetDropDownValue('kelas_id');
+    });
+
+    function GetReportKas() {
+        var param = {
+            startDate: $("#startDate").val(),
+            endDate: $("#endDate").val(),
+            kelas: $("#kelas_id").val(),
+        }
+
+        console.log(param);
+
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            cache: true,
+            url: '@Url.Action("ReadLaporanKasAsync", "LaporanKas")',
+            data: param,  
+            success: function (Data, textStatus, jqXHR) {
+                $("#tbody-table-report-kas").empty();
+                var seq = 0;
+                var trHTML = '';
+                $.each(Data.data, function (i, rowData) {
+                    seq += 1;
+                    trHTML += '<tr>' +
+                        "<td style='display:none'>" + rowData.id + "</td>" +
+                        "<td class='text-center'>" + seq + "</td>" +
+                        "<td class='text-center'>" + rowData.tanggal + "</td>" +
+                        "<td class='text-center'>" + rowData.kelas + "</td>" +
+                        "<td class='text-center'>" + rowData.jumlahPemasukan + "</td>" +
+                        "<td class='text-center'>" + rowData.jumlahPengeluaran + "</td>" +
+                        "<td class='text-center'>" + rowData.jenisTransaksi + "</td>" +
+                        "<td class='text-center'>" + rowData.keterangan + "</td>" +
+                        '</tr>';
+                });
+                $('#table-report-kas').append(trHTML);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Get Report Kas Error.")
+            }
+        });
+    }
+
+
+    function GetDropDownValue(objectid) {
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            cache: false,
+            url: '@Url.Action("ReadKelasAsync", "Kelas")',
+            success: function (Data, textStatus, jqXHR) {
+                var html = "";
+                if (Data.data != null) {
+                    $("#" + objectid + "").val("");
+                    //var html = "";
+                    for (var i = 0; i < Data.data.length; i++) {
+                        if (i == 0)
+                            html += "<option value=''>Pilih...</option>"
+
+                        html += "<option value='" + Data.data[i].id + "'>" + Data.data[i].kelas + "</option>"
+                    }
+                }
+                else {
+                    html = "<option value=''>Pilih...</option>"
+                }
+                $("#" + objectid + "").html(html);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Get Kelas Error.")
+            }
+        });
+    }
+</script>
+
+

@@ -1,0 +1,230 @@
+﻿<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.115.4">
+    <title>Manajemen Kas Kelas</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta name="theme-color" content="#712cf9">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+
+        .active {
+            color: #0d6efd !important;
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="offcanvas-navbar.css" rel="stylesheet"> -->
+</head>
+
+<body class="bg-body-tertiary">
+
+    <main class="container">
+        <div class="align-items-center p-3 my-3  bg-body rounded shadow-sm">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="kas-masuk-tab" data-bs-toggle="tab" data-bs-target="#kas-masuk"
+                        type="button" role="tab" aria-selected="true">Kas Masuk</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="kas-keluar-tab" data-bs-toggle="tab" data-bs-target="#kas-keluar"
+                        type="button" role="tab" aria-selected="false">Kas Keluar</button>
+                </li>
+            </ul>
+            <div style="margin-left: 1080px; margin-top: -45px" id="btn-kas-masuk">
+                <a type="button" class="btn btn-primary" asp-controller="PemasukanKas" asp-action="AddKasMasuk"> Tambah Kas Masuk</a>
+            </div>
+            <div style="margin-left: 1080px; margin-top: -45px; display: none;" id="btn-kas-keluar">
+                <a type="button" class="btn btn-primary" asp-controller="PengeluaranKas" asp-action="AddKasKeluar"> Tambah Kas Keluar</a>
+            </div>
+        </div>
+
+        <div class="tab-pane fade show active my-3 p-3 bg-body rounded shadow-sm" id="kas-masuk"  >
+            <table class="table" id="table-kas-masuk">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">#</th>
+                        <th class="text-center" scope="col">Nama Kelas</th>
+                        <th class="text-center" scope="col">Tanggal Kas Masuk</th>
+                        <th class="text-center" scope="col">Jumlah Kas Masuk</th>
+                        <th class="text-center" scope="col">Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-table-kas-masuk">
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane fade hide my-3 p-3 bg-body rounded shadow-sm" id="kas-keluar"    >
+            <table class="table" id="table-kas-keluar">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">#</th>
+                        <th class="text-center" scope="col">Nama Kelas</th>
+                        <th class="text-center" scope="col">Tanggal Kas Keluar</th>
+                        <th class="text-center" scope="col">Jumlah Kas Keluar</th>
+                        <th class="text-center" scope="col">Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-table-kas-keluar">
+                    
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
+        integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('#kas-masuk-tab').click(function(){
+                $('#kas-masuk').show();
+                $('#kas-keluar').hide();
+                $('#btn-kas-masuk').show();
+                $('#btn-kas-keluar').hide();
+            });
+
+            $('#kas-keluar-tab').click(function(){
+                $('#kas-masuk').hide();
+                $('#kas-keluar').show();
+                $('#btn-kas-masuk').hide();
+                $('#btn-kas-keluar').show();
+            });
+            GetRincianKas();
+        });
+
+        function GetRincianKas() {
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                cache: false,
+                url: '@Url.Action("ReadRincianKasAsync", "LaporanKas")',
+                success: function (Data, textStatus, jqXHR) {
+                    $("#tbody-table-kas-masuk").empty();
+                    $("#tbody-table-kas-keluar").empty();
+                    var seq = 0;
+                    var trHTML1 = '';
+                    var trHTML2 = '';
+                    $.each(Data.data.pemasukanKas, function (i, rowData) {
+                        seq += 1;
+                        trHTML1 += '<tr>' +
+                            "<td style='display:none'>" + rowData.id + "</td>" +
+                            "<td class='text-center'>" + seq + "</td>" +
+                            "<td class='text-center'>" + rowData.kelasId + "</td>" +
+                            "<td class='text-center'>" + rowData.tanggalMasukKas + "</td>" +
+                            "<td class='text-center'>" + rowData.nominalKas + "</td>" +
+                            "<td class='text-center'>" + rowData.keterangan + "</td>" +
+
+                            '</tr>';
+                    });
+
+                    $.each(Data.data.pengeluaranKas, function (i, rowData) {
+                        seq += 1;
+                        trHTML2 += '<tr>' +
+                            "<td style='display:none'>" + rowData.id + "</td>" +
+                            "<td class='text-center'>" + seq + "</td>" +
+                            "<td class='text-center'>" + rowData.kelasId + "</td>" +
+                            "<td class='text-center'>" + rowData.tanggalKeluarKas + "</td>" +
+                            "<td class='text-center'>" + rowData.nominalKas + "</td>" +
+                            "<td class='text-center'>" + rowData.keterangan + "</td>" +
+
+                            '</tr>';
+                    });
+                    $('#table-kas-masuk').append(trHTML1);
+                    $('#table-kas-keluar').append(trHTML2);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Get Rincian Kas Error.")
+                }
+            });
+        }
+    </script>
+</body>
+
+

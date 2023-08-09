@@ -1,0 +1,10 @@
+﻿@{
+    if (Context.Request.Path.StartsWithSegments("/Login"))
+    {
+        Layout = null;
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
