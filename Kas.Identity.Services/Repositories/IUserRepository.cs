@@ -8,6 +8,8 @@ namespace Kas.Identity.Services.Repositories
         Task<List<ReadUserModel>> ReadUserAsync();
         Task<string> UpdateUserAsync(UpdateUserModel model);
         Task<string> DeleteUserAsync(string id);
+        Task<bool> AuthenticateAsync(string username,string password);
+
 
     }
 }

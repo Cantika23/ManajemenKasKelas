@@ -12,7 +12,6 @@ namespace Kas.Identity.Services.Models
         [Required]
         public string password { get; set; } = null!;
 
-        [Required]
         public string role { get; set; } = null!;
     }
 }

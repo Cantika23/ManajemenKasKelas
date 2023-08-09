@@ -1,149 +1,129 @@
-﻿@{
-    Layout = null;
+﻿
+@{
+	Layout = null;
 }
-
+<!DOCTYPE html>
+<html>
 <head>
-    <script src="color-modes.js"></script>
+	<title>Membuat Desain Form Login Dengan CSS - www.malasngoding.com</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style>
+		body {
+			font-family: sans-serif;
+			background: #d5f0f3;
+		}
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.115.4">
-    <title>Login - Manajemen Kas Kelas</title>
+		h1 {
+			text-align: center;
+			/*ketebalan font*/
+			font-weight: 300;
+		}
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+		.tulisan_login {
+			text-align: center;
+			/*membuat semua huruf menjadi kapital*/
+			text-transform: uppercase;
+		}
 
+		.kotak_login {
+			width: 350px;
+			background: white;
+			/*meletakkan form ke tengah*/
+			margin: 80px auto;
+			padding: 30px 20px;
+		}
 
+		label {
+			font-size: 11pt;
+		}
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch/css@3">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+		.form_login {
+			/*membuat lebar form penuh*/
+			box-sizing: border-box;
+			width: 100%;
+			padding: 10px;
+			font-size: 11pt;
+			margin-bottom: 20px;
+		}
 
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
-    <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
-    <meta name="theme-color" content="#712cf9">
+		.tombol_login {
+			background: #61affe;
+			color: white;
+			font-size: 11pt;
+			width: 100%;
+			border: none;
+			border-radius: 3px;
+			padding: 10px 20px;
+		}
 
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .b-example-divider {
-            width: 100%;
-            height: 3rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
-
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .btn-bd-primary {
-            --bd-violet-bg: #712cf9;
-            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-            --bs-btn-font-weight: 600;
-            --bs-btn-color: var(--bs-white);
-            --bs-btn-bg: var(--bd-violet-bg);
-            --bs-btn-border-color: var(--bd-violet-bg);
-            --bs-btn-hover-color: var(--bs-white);
-            --bs-btn-hover-bg: #6528e0;
-            --bs-btn-hover-border-color: #6528e0;
-            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-            --bs-btn-active-color: var(--bs-btn-hover-color);
-            --bs-btn-active-bg: #5a23c8;
-            --bs-btn-active-border-color: #5a23c8;
-        }
-
-        .bd-mode-toggle {
-            z-index: 1500;
-        }
-
-        .center-form {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* This makes the container take up the full height of the viewport */
-        }
-    </style>
-
-
-    <!-- Custom styles for this template -->
-    <link href="sign-in.css" rel="stylesheet">
+		.link {
+			color: #232323;
+			text-decoration: none;
+			font-size: 10pt;
+		}
+	</style>
 </head>
+<body>
 
-<body class="d-flex align-items-center py-4 bg-body-tertiary">
+	<h1>Manajemen Kas Kelas</h1>
 
-    <div class="center-form">
-        <main class="form-signin">
-            <form style="align-content:center">
-                <h1 class="h3 mb-3 fw-normal">Manajemen Kas Kelas</h1>
-                <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Username</label>
-                </div>
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
-                </div>
-                <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
-                <p class="mt-3 mb-3 text-body-secondary text-center">&copy; 2023</p>
-            </form>
-        </main>
-    </div>
-   
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
-    </script>
+	<div class="kotak_login">
+		<p class="tulisan_login">Silahkan login</p>
+			<label>Username</label>
+			<input type="text" id="username" class="form_login" placeholder="Username ..">
+
+			<label>Password</label>
+			<input type="text" id="password" class="form_login" placeholder="Password ..">
+
+			<input type="submit" class="tombol_login" id="login" value="LOGIN">
+
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
+		$(document).ready(function () {
+
+
+		});
+		$('#login').click(function () {
+			Login();
+		})
+		function Login() {
+
+			//kondisi Cek username & pass tidak kosong
+			if ($("#username").val() == "" || $("#password").val() == "") {
+				alert("User Name & Password harus diisi.")
+			}
+			else {
+				var param = {
+					username: $("#username").val(),
+					password: $("#password").val(),
+				};
+				$.ajax({
+					type: 'POST',
+					dataType: 'json',
+					contentType: "application/json",
+					cache: false,
+					url: '@Url.Action("Auth", "Login")',
+					data: JSON.stringify(param),
+					success: function (Data, textStatus, jqXHR) {
+
+						if (Data.code == '000') {
+							window.location.replace('@Url.Action("Index", "Home")');
+						}
+						else {
+							alert(Data.message);
+						}
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						alert("Login Error.");
+						console.log(textStatus);
+					}
+				});
+			}
+		}
+
+	</script>
 
 </body>
+</html>
 

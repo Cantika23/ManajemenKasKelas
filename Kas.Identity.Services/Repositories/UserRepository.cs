@@ -17,6 +17,19 @@ namespace Kas.Identity.Services.Repositories
             _context = context;
         }
 
+        public async Task<bool> AuthenticateAsync(string username, string password)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.username == username && x.password == password);
+
+            if (user != null)
+            {
+                return true;
+            }
+
+            return false;
+
+        }
+
         public async Task<string> CreateUserAsync(CreateUserModel model)
         {
             try

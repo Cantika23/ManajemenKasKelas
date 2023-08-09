@@ -52,6 +52,39 @@ namespace Kas.Identity.Services.Controllers
             }
         }
 
+        [HttpPost("auth")]
+        public async Task<ActionResult<ResponseBase<bool>>> AuthenticateAsync(string username, string password)
+        {
+            try
+            {
+                var res = await _userRepository.AuthenticateAsync(username,password);
+                return Ok(new ResponseBase<bool>
+                {
+                    Code = "000",
+                    Message = "Successfully",
+                    Data = true
+                });
+            }
+            catch (GlobalException ex)
+            {
+                return BadRequest(new ResponseBase<bool>
+                {
+                    Code = ex.ErrorCode,
+                    Message = ex.ErrorMessage,
+                    Data = false
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ResponseBase<bool>
+                {
+                    Code = "999",
+                    Message = ex.Message,
+                    Data = false
+                });
+            }
+        }
+
         [HttpGet("readUser")]
         public async Task<ActionResult<ResponseBase<List<ReadUserModel>>>> ReadUser()
         {
